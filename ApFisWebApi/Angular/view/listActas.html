@@ -1,8 +1,4 @@
-﻿<ul ng-repeat="project in allProjects">
-    <li> {{Filtro || json}} </li>
-</ul>
-
-<div class="row">
+﻿<div class="row">
     <div class="col s3" style="text-align:left;">
         <h5 class="letf">Fecha Inicial</h5>
         <input type="date" id="inicial" name="inicial" ng-model="Filtro.FechaInicial" format="yyyy-MM-dd">
@@ -19,39 +15,91 @@
         <a style="margin-top:40px;" ng-click="Filtrar()" class="waves-effect waves-light btn green"> <i class="material-icons left">search</i>Buscar</a>
     </div>
 </div>
+<div class="row" >
+    <table class="striped bordered">
+        <thead>
+        <th>N° Acta </th>
+        <th>Fecha Aprehensión</th>
+        <th>Establecimiento </th>
+        <th>Ide. Infractor</th>
+        <th>Infractor</th>
+        <th>Dirección</th>
+        <th>Municipio </th>
+        <th>Aprehendido Por  </th>
+        <th>Causales </th>
+        <th>Tipo Aprehensión </th>
+        <th>Estado</th>
+        <th>Ver Detalle</th>
+        <th>Ver Documentos </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="a in Actas">
+                <td>{{a.NROACTA}}</td>
+                <td>{{a.FECHAINICIO | date: "yyyy-MM-dd"}}</td>
+                <td>{{a.ESTABLECIMIENTO}}</td>
+                <td>{{a.IDE_INFRACT}}</td>
+                <td>{{a.INFRACT}}</td>
+                <td>{{a.DIR_ESTA}}</td>
+                <td>{{a.MUNICIPIO}}</td>
+                <td>{{a.BODEGA}}</td>
+                <td>{{a.APREPOR}}</td>
+                <td>{{a.TIPOAPRE}}</td>
+                <td>{{a.ESTADON}}</td>
+                <td><a data-ng-click="getDocs(a)" href="javascript:;">Ver Documentos</a></td>
+                <td><a data-ng-click="getProducts(a)" href="javascript:;">Ver Productos</a></td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+    <!-- Modal Structure -->
+    <div id="modalDoc" class="modal">
+        <div class="modal-content">
+            <h4>Documentos Relacionados</h4>
+            <table class="striped bordered">
+                <thead>
+                <th>Documento</th>
+                <th>Fecha Documento</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="doc in Acta.Documentos">
+                        <td>{{doc.ESTADON}} </td>
+                        <td>{{doc.FECHA | date: "yyyy-MM-dd"}}</td>
+                        <td> <a href="http://www.google.com" target="_blank"> Ver </a> </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a ng-click="closeModalDocs" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>
 
-<table class="striped bordered">
-    <thead>
-    <th>N° Acta </th>
-    <th>Fecha Aprehensión</th>
-    <th>Establecimiento </th>
-    <th>Ide. Infractor</th>
-    <th>Infractor</th>
-    <th>Dirección</th>
-    <th>Municipio </th>
-    <th>Aprehendido Por  </th>
-    <th>Causales </th>
-    <th>Tipo Aprehensión </th>
-    <th>Estado</th>
-    <th>Ver Detalle</th>
-    <th>Ver Documentos </th>
-    </thead>
-    <tbody>
-        <tr ng-repeat="a in Actas">
-            <td>{{a.NROACTA}}</td>
-            <td>{{a.FECHAINICIO | date: "yyyy-MM-dd"}}</td>
-            <td>{{a.ESTABLECIMIENTO}}</td>
-            <td>{{a.IDE_INFRACT}}</td>
-            <td>{{a.INFRACT}}</td>
-            <td>{{a.DIR_ESTA}}</td>
-            <td>{{a.MUNICIPIO}}</td>
-            <td>{{a.BODEGA}}</td>
-            <td>{{a.APREPOR}}</td>
-            <td>{{a.TIPOAPRE}}</td>
-            <td>{{a.ESTADO}}</td>
-            <td><a href="#/Detalles">Detalles</a></td>
-            <td><a href="#/Documentos/">Documentos</a></td>
-            
-        </tr>
-    </tbody>
-</table>
+    <div id="modalProd" class="modal">
+        <div class="modal-content">
+            <h4>Productos del Acta</h4>
+            <ul ng-repeat="" class="collection">
+                <li class="collection-item">{{}} {{}} {{}} {{}} </li>
+            </ul>
+            <table class="striped bordered highlight">
+                <thead>
+                <th>Descripción</th>
+                <th>Capacidad</th>
+                <th>Unidades</th>
+                <th>Precio Unitario</th>
+                <th>Total</th>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="prod in Acta.Productos">
+                        <td>{{prod.NOMBRE}} </td>
+                        <td>{{prod.CAPACIDAD}} </td>
+                        <td style="text-align:right">{{prod.UNIDADES}} </td>
+                        <td style="text-align:right">{{prod.PRECIOUNIT | currency}} </td>
+                        <td style="text-align:right">{{prod.PRECIOUNIT*prod.UNIDADES | currency}} </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="modal-footer">
+            <a ng-click="closeModalProds" class=" modal-action modal-close waves-effect waves-green btn-flat">Cerrar</a>
+        </div>
+    </div>

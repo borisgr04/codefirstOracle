@@ -12,11 +12,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="~/Content/css/materialize.min.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/angular.min.js"></script>
     <script src="~/Scripts/angular-route.min.js"></script>
     <script src="~/Scripts/moment.min.js"></script>
+    <script src="~/Content/js/materialize.min.js"></script>
 
     <script>
         var app = angular.module("project", ["ngRoute"]);
@@ -50,7 +52,7 @@
             $scope.Filtro = {
                 FechaInicial: date2,
                 FechaFinal: date1,
-                Ide: 1111
+                Ide: ''
             };
             $scope.Estados = [
                 {Cod:'01',Nom:'INGRESADA'},
@@ -68,8 +70,28 @@
             $scope.Filtrar = function () {
                 return loadRecords();
             };
-            loadRecords();
+            
+            $scope.getProducts = function () {
+                $scope.Acta = this.a;
+                $('#modalProd').openModal();
+            };
 
+            $scope.closeModalProds = function () {
+                $('#modalProd').closeModal();
+            };
+
+            $scope.getDocs = function () {
+                $scope.Acta = this.a;
+                $('#modalDoc').openModal();
+            };
+
+            $scope.closeModalDocs = function () {
+                $('#modalDoc').closeModal();
+            };
+            
+
+            loadRecords();
+            
             function loadRecords() {
                 var fechai = new Date($scope.Filtro.FechaInicial);
                 var fechaf = new Date($scope.Filtro.FechaFinal);
@@ -88,7 +110,7 @@
             }
             function getDocs(acta) {
                 var nroacta = acta.NROACTA;
-
+                
                 var promiseGet = actasService.getDocs(nroacta); //The Method Call from service
                 promiseGet.then(function (pl) {
                     $scope.Documentos = pl.data;
@@ -98,6 +120,8 @@
                 });
             }
         }]);
+
+        
         
          app.service("actasService", function ($http) {
             var uri = "http://localhost:50364";
@@ -119,13 +143,17 @@
     
 </head>
 <body ng-app="project" ng-controller="listController">
-    <img src="~/Content/banner.jpg" width="100%" />
-    <div class="row">
-        <div class="col s12" style="text-align: center;"><h2>CONSULTA DE APREHENSIONES</h2></div>
-    </div>
-    
-    <div ng-view>
-        
+    <div style="margin-left:20px; margin-right:20px">
+        <img src="~/Content/banner.jpg" width="100%" />
+        <div class="row">
+            <div class="col s12" style="text-align: center;"><h2>CONSULTA DE APREHENSIONES</h2></div>
+        </div>
+        <div class="row">
+            <div ng-view>
+
+
+            </div>
+        </div>
     </div>
 </body>
 </html>

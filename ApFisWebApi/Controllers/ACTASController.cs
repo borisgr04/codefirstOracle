@@ -55,6 +55,7 @@ namespace ApFisWebApi.Controllers
                 APREPOR = t.APREPOR,
                 TIPOAPRE = t.TIPOAPRE,
                 CAUSALES = t.CAUSALES,
+                ESTADO= t.ESTADO,
                 Documentos = t.ESTACTAS.Select(tt => new VACTASDOC
                 {
                     FECHA = tt.FECHA,
@@ -66,7 +67,8 @@ namespace ApFisWebApi.Controllers
                      CODIGO=pp.CODIGO,
                      NOMBRE = pp.PRODUCTOS.DESCRIPCION,
                      UNIDADES = pp.UNIDADES,
-                     CAPACIDAD = pp.PRODUCTOS.CAP_PROD1.DES_CAP
+                     CAPACIDAD = pp.PRODUCTOS.CAP_PROD1.DES_CAP,
+                     PRECIOUNIT= pp.PRECIOUNIT
                 }).ToList()
             };
         }

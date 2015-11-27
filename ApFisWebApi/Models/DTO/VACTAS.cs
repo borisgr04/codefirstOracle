@@ -7,6 +7,22 @@ namespace ApFisWebApi.Models.DTO
 {
     public class VACTAS
     {
+        public static string GetEstados(string ESTADO){
+                Dictionary<string, string> Estados = new Dictionary<string,string>();
+                Estados.Add("01", "INGRESADA");
+                Estados.Add("02", "PLIEGO DE CARGO");
+                Estados.Add("03", "RESOLUCION DE DECOMISO");
+                Estados.Add("04", "RESOLUCIÓN DE DEVOLUCIÓN");
+                Estados.Add("05", "RESOLUCION QUE FALLA RECURSO DE RECONSIDERACION");
+                Estados.Add("06", "CONSTANCIA EJECUTORIA");
+                if (ESTADO != null)
+                {
+                    return Estados[ESTADO];
+                }
+                else {
+                    return "";
+                }
+        }
         public long NROACTA {get; set;}
         public DateTime FECHAINICIO {get; set;}
         public string ESTABLECIMIENTO {get; set;}
@@ -19,6 +35,11 @@ namespace ApFisWebApi.Models.DTO
         public string TIPOAPRE {get; set;}
         public string CAUSALES {get; set;}
         public string ESTADO { get; set; }
+        public string ESTADON { 
+            get{
+                return GetEstados(ESTADO);
+            } 
+        }
         public List<VACTASDOC> Documentos { get; set; }
         public List<VPRODACTAS> Productos { get; set; }
     }
@@ -29,7 +50,13 @@ namespace ApFisWebApi.Models.DTO
         public DateTime FECHA { get; set; }
         public string FMTO_EST { get; set; }
         public string ESTADO { get; set; }
-      
+        public string ESTADON
+        {
+            get
+            {
+                return VACTAS.GetEstados(ESTADO);
+            }
+        }
     }
 
     public class VPRODACTAS
