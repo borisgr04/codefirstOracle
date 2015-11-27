@@ -1,0 +1,131 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/Content/materialize.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/angular-route.min.js"></script>
+    <script src="~/Scripts/moment.min.js"></script>
+
+    <script>
+        var app = angular.module("project", ["ngRoute"]);
+        
+        app.config(["$routeProvider", function ($routeProvider) {
+            $routeProvider
+            .when('/', {
+                templateUrl: '/Angular/view/listActas.html',
+                controller: 'listController'
+            })
+            .when('/Detalle/', {
+                templateUrl: 'detActas.html',
+                controller: 'DetalleController'
+            })
+            .when('/Documentos/', {
+                templateUrl: 'docActas.html',
+                controller: 'DocumentosController'
+            });
+        }]);
+
+        app.controller("listController", ["$scope", "actasService", function ($scope, actasService) {
+            $scope.Actas = [];
+            $scope.Acta = {};
+            $scope.Documentos = {};
+
+            var date1 = new Date();
+            var date2 = new Date();
+
+            date1.setMonth(date2.getMonth()+1);
+
+            $scope.Filtro = {
+                FechaInicial: date2,
+                FechaFinal: date1,
+                Ide: 1111
+            };
+            $scope.Estados = [
+                {Cod:'01',Nom:'INGRESADA'},
+                {Cod:'02',Nom:'PLIEGO DE CARGO'},
+                {Cod:'03',Nom:'RESOLUCION DE DECOMISO'},
+                {Cod:'04',Nom:'RESOLUCIÓN DE DEVOLUCIÓN'},
+                { Cod: '05', Nom: 'RESOLUCION QUE FALLA RECURSO DE RECONSIDERACION' },
+                { Cod: '06', Nom: 'CONSTANCIA EJECUTORIAN' },
+            ];
+            
+            $scope.getEstados = function (cod) {
+                return $scope.Estados[cod];
+            };
+
+            $scope.Filtrar = function () {
+                return loadRecords();
+            };
+            loadRecords();
+
+            function loadRecords() {
+                var fechai = new Date($scope.Filtro.FechaInicial);
+                var fechaf = new Date($scope.Filtro.FechaFinal);
+                var fi = fechai.getFullYear() + "-" + (fechai.getMonth() + 1) + "-" + fechai.getDate();
+                var ff = fechaf.getFullYear() + "-" + (fechaf.getMonth() + 1) + "-" + fechaf.getDate();
+                var ide= $scope.Filtro.Ide;
+
+                var promiseGet = actasService.getAll(fi, ff, ide); //The Method Call from service
+                    promiseGet.then(function (pl) {
+                        $scope.Actas = pl.data;
+
+                    },
+                    function (errorPl) {
+                              $log.error('failure loading Actas', errorPl);
+                });
+            }
+            function getDocs(acta) {
+                var nroacta = acta.NROACTA;
+
+                var promiseGet = actasService.getDocs(nroacta); //The Method Call from service
+                promiseGet.then(function (pl) {
+                    $scope.Documentos = pl.data;
+                },
+                function (errorPl) {
+                    $log.error('failure loading Actas', errorPl);
+                });
+            }
+        }]);
+        
+         app.service("actasService", function ($http) {
+            var uri = "http://localhost:50364";
+            this.get = function (id) {
+                var req = $http.get(uri + '/api/actas/' + id);
+                return req;
+            };
+            this.getAll = function (fechainicial, fechafinal,ide) {
+                var req = $http.get(uri + '/api/actas?fi='+fechainicial+'&ff='+fechafinal+'&ide='+ide);
+                return req;
+            };
+            this.getDocs = function (nroActa) {
+                var req = $http.get(uri + '/'+nroActa+'/documentos');
+                return req;
+            };
+        });
+        
+    </script>
+    
+</head>
+<body ng-app="project" ng-controller="listController">
+    <img src="~/Content/banner.jpg" width="100%" />
+    <div class="row">
+        <div class="col s12" style="text-align: center;"><h2>CONSULTA DE APREHENSIONES</h2></div>
+    </div>
+    
+    <div ng-view>
+        
+    </div>
+</body>
+</html>

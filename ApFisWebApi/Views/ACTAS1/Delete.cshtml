@@ -1,0 +1,400 @@
+﻿@model ApFisWebApi.Models.ACTAS
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>ACTAS</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.BODEGAS.NOM_BOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BODEGAS.NOM_BOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CGOPERATIVO.APE1_CGO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CGOPERATIVO.APE1_CGO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTABLEC.NOM_EST)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTABLEC.NOM_EST)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.INFRACTOR.APE1_INF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.INFRACTOR.APE1_INF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MUNICIPIOS.NOM_MUN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MUNICIPIOS.NOM_MUN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RAUTORIDAD.APE1_AUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RAUTORIDAD.APE1_AUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RBODEGA.APE1_BOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RBODEGA.APE1_BOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.USUARIOS.PASSWORD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.USUARIOS.PASSWORD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAINI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAINI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHAFIN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHAFIN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FACTURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FACTURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OTRODOC)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OTRODOC)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TOTALUNID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TOTALUNID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EXPLICACION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EXPLICACION)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_FACTCOM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_FACTCOM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_MANCARGA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_MANCARGA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_OTROS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_OTROS)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_FACTCOM_FOLIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_FACTCOM_FOLIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_MANCARGA_FOLIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_MANCARGA_FOLIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.REL_OTROS_FOLIO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.REL_OTROS_FOLIO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ESTADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ESTADO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FIRMA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FIRMA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEC_REG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEC_REG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FCOOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FCOOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FAUT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FAUT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FINF)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FINF)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FBOD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FBOD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPOAPRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPOAPRE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CAUSALES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CAUSALES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.APREPOR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.APREPOR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECPOL)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECPOL)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CATPROD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CATPROD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIP_RES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIP_RES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PRU_CON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PRU_CON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NRO_NOT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NRO_NOT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_NOT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMP_NOT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEC_NOT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEC_NOT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ARG_CON)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ARG_CON)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NRO_NOTD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NRO_NOTD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EMP_NOTD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EMP_NOTD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEC_NOTD)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEC_NOTD)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEC_VEND)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEC_VEND)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIP_NOT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIP_NOT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIP_NOTR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIP_NOTR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FEC_NOTP_RR)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FEC_NOTP_RR)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SEDEMOSTRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SEDEMOSTRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIEMCIERRE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIEMCIERRE)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

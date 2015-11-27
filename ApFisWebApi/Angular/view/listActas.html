@@ -1,0 +1,57 @@
+﻿<ul ng-repeat="project in allProjects">
+    <li> {{Filtro || json}} </li>
+</ul>
+
+<div class="row">
+    <div class="col s3" style="text-align:left;">
+        <h5 class="letf">Fecha Inicial</h5>
+        <input type="date" id="inicial" name="inicial" ng-model="Filtro.FechaInicial" format="yyyy-MM-dd">
+    </div>
+    <div class="col s3" style="text-align:left;">
+        <h5 class="letf">Fecha final</h5>
+        <input type="date" id="final" name="final" ng-model="Filtro.FechaFinal" format="yyyy-MM-dd">
+    </div>
+    <div class="col s3" style="text-align:left;">
+        <h5 class="letf">Identificación</h5>
+        <input type="text" id="ide" name="ide" ng-model="Filtro.Ide">
+    </div>
+    <div class="col s3">
+        <a style="margin-top:40px;" ng-click="Filtrar()" class="waves-effect waves-light btn green"> <i class="material-icons left">search</i>Buscar</a>
+    </div>
+</div>
+
+<table class="striped bordered">
+    <thead>
+    <th>N° Acta </th>
+    <th>Fecha Aprehensión</th>
+    <th>Establecimiento </th>
+    <th>Ide. Infractor</th>
+    <th>Infractor</th>
+    <th>Dirección</th>
+    <th>Municipio </th>
+    <th>Aprehendido Por  </th>
+    <th>Causales </th>
+    <th>Tipo Aprehensión </th>
+    <th>Estado</th>
+    <th>Ver Detalle</th>
+    <th>Ver Documentos </th>
+    </thead>
+    <tbody>
+        <tr ng-repeat="a in Actas">
+            <td>{{a.NROACTA}}</td>
+            <td>{{a.FECHAINICIO | date: "yyyy-MM-dd"}}</td>
+            <td>{{a.ESTABLECIMIENTO}}</td>
+            <td>{{a.IDE_INFRACT}}</td>
+            <td>{{a.INFRACT}}</td>
+            <td>{{a.DIR_ESTA}}</td>
+            <td>{{a.MUNICIPIO}}</td>
+            <td>{{a.BODEGA}}</td>
+            <td>{{a.APREPOR}}</td>
+            <td>{{a.TIPOAPRE}}</td>
+            <td>{{a.ESTADO}}</td>
+            <td><a href="#/Detalles">Detalles</a></td>
+            <td><a href="#/Documentos/">Documentos</a></td>
+            
+        </tr>
+    </tbody>
+</table>

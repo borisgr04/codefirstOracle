@@ -1,4 +1,5 @@
-﻿using Oracle.ManagedDataAccess.Client;
+﻿using CodeFirstOracle.Model;
+using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -7,39 +8,39 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CodeFirstOracle.Model.Apfis;
 
 namespace CodeFirstOracle
 {
+    //http://www.taringa.net/post/ciencia-educacion/16410475/Instalacion-de-Oracle-Instant-Client-11-2-en-Windows-8.html
+    //Oracle Cliente
+
+    //estrategiar de inicializacion de base de datos
+    //http://www.entityframeworktutorial.net/code-first/database-initialization-strategy-in-code-first.aspx
     class Program
     {
         //http://www.entityframeworktutorial.net/code-first/turn-off-database-initialization-in-code-first.aspx
+
+        //Using NuGet to Install and Configure Oracle Data Provider for .NET
+        //http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/dotnet/NuGet/index.html#
+
+        //Entity Framework Code First and Code First Migrations for Oracle Database
+        //http://www.oracle.com/webfolder/technetwork/tutorials/obe/db/dotnet/CodeFirst/index.html
         static void Main(string[] args)
         {
-            Database.SetInitializer<OracleDbContext>(null);
-
-            using (var ctx = new OracleDbContext())
+            //Database.SetInitializer<OracleDbContext>(null);
+            /*
+            using (var db = new hrContext())
             {
-                /*
-                var emp = new Employee
-                {
-                    Name = "Tom",
-                    HireDate = DateTime.Now
-                };
-
-                ctx.Employees.Add(emp);
-                ctx.SaveChanges();
-
-                var dept = new Department
-                {
-                    Name = "Accounting",
-                    ManagerId = emp.EmployeeId
-                };
-
-                ctx.Departments.Add(dept);
-                ctx.SaveChanges();*/
-                Console.WriteLine(ctx.Employees.Count());
+                Console.WriteLine("Cantidad de Empleados: " + db.EMPLOYEES.Count());
             }
+            */
 
+            using (var db = new ApFisContext())
+            {
+                
+                Console.WriteLine("Cantidad de Empleados: " + db.ACTAS.Count());
+            }
             Console.Write("Press any key to continue... ");
             Console.ReadLine();
         }
@@ -70,15 +71,16 @@ namespace CodeFirstOracle
         */ 
     }
 
-    
-    public class EMPLOYEES
+
+
+    /*
+    public class Employee
     {
-        [Key]
-        public int EMPLOYEE_ID { get; set; }
-        public string FIRST_NAME { get; set; }
+        public int EmployeeId { get; set; }
+        public string Name { get; set; }
+        public DateTime HireDate { get; set; }
         //public string Location { get; set; }
     }
-    /*
     public class Department
     {
         public int DepartmentId { get; set; }
@@ -87,11 +89,19 @@ namespace CodeFirstOracle
         public int ManagerId { get; set; }
         public Employee Manager { get; set; }
     }
-     * */
-
+    */
+    /*
+    public class EMPLOYEES
+    {
+        [Key]
+        public int EMPLOYEE_ID { get; set; }
+        public string FIRST_NAME { get; set; }
+        //public string Location { get; set; }
+    }
     public class OracleDbContext : DbContext
     {
         public DbSet<EMPLOYEES> Employees { get; set; }
+        //public DbSet<Employee> Employees { get; set; }
         //public DbSet<Department> Departments { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -99,4 +109,5 @@ namespace CodeFirstOracle
             modelBuilder.HasDefaultSchema("HR");
         }
     }
+    */
 }
